@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATELIER | Modern Luxury Fashion House & Ready-to-Wear</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              400: '#E5C158',
+              500: '#D4AF37',
+              600: '#C5A059',
+              700: '#B08B44'
+            },
+            dark: {
+              900: '#0C0C0E',
+              850: '#121215',
+              800: '#161619',
+              700: '#1F1F24',
+              600: '#2C2C32'
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen flex flex-col bg-[#FAFAFA] dark:bg-[#0C0C0E] text-[#121214] dark:text-[#F5F5F7] transition-colors duration-300">
+
+  <!-- TOP PROMO ANNOUNCEMENT BAR -->
+  <div class="bg-[#121214] dark:bg-black text-[#D4AF37] text-xs py-2 px-4 text-center font-medium tracking-wider flex items-center justify-between border-b border-white/10">
+    <div class="hidden sm:block text-[11px] opacity-75">WORLDWIDE COMPLIMENTARY EXPRESS DELIVERY OVER $150</div>
+    <div class="mx-auto flex items-center gap-2 text-[11px] tracking-widest uppercase">
+      <span>SPRING / SUMMER RUNWAY '26</span>
+      <span class="opacity-40">•</span>
+      <span class="text-white">USE CODE: <strong class="text-gold-400">STYLE20</strong> FOR 20% OFF</span>
+    </div>
+    <div class="hidden md:flex items-center gap-4 text-[11px]">
+      <a href="admin.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-1">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Store Manager
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-[#0C0C0E]/90 backdrop-blur-md border-b border-gray-200/80 dark:border-zinc-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Mobile Menu Trigger -->
+        <div class="flex items-center lg:hidden">
+          <button id="btn-open-mobile-menu" aria-label="Open Mobile Menu" class="p-2 text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- BRAND LOGO -->
+        <div class="flex-shrink-0 flex flex-col items-center lg:items-start cursor-pointer" onclick="store.resetFilters(); window.scrollTo({top:0, behavior:'smooth'});">
+          <span class="font-serif text-3xl sm:text-4xl tracking-[0.25em] font-light uppercase text-black dark:text-white">ATELIER</span>
+          <span class="text-[9px] tracking-[0.35em] text-gray-500 dark:text-gray-400 uppercase -mt-1 font-sans">PARIS • MILANO • NEW YORK</span>
+        </div>
+
+        <!-- DESKTOP CATEGORY NAVIGATION MENU -->
+        <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wider uppercase">
+          <button class="nav-cat-link text-gray-900 dark:text-white font-semibold transition-colors border-b-2 border-gold-500 pb-1" data-cat="all">All</button>
+          <button class="nav-cat-link text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors pb-1" data-cat="women">Women</button>
+          <button class="nav-cat-link text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors pb-1" data-cat="men">Men</button>
+          <button class="nav-cat-link text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors pb-1" data-cat="kids">Kids</button>
+          <button class="nav-cat-link text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors pb-1" data-cat="footwear">Footwear</button>
+          <button class="nav-cat-link text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors pb-1" data-cat="accessories">Accessories</button>
+          <a href="#sale-section" class="text-rose-600 dark:text-rose-400 hover:underline flex items-center gap-1 font-semibold">
+            <i data-lucide="tag" class="w-3.5 h-3.5"></i> Sale
+          </a>
+        </nav>
+
+        <!-- RIGHT UTILITY ACTIONS -->
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          
+          <!-- SEARCH TRIGGER / SEARCH INPUT -->
+          <div class="relative hidden sm:block">
+            <input 
+              type="text" 
+              id="header-search-input" 
+              placeholder="Search silk, blazer, boots..." 
+              class="w-40 md:w-56 pl-9 pr-3 py-1.5 text-xs rounded-full border border-gray-300 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-850 focus:outline-none focus:ring-1 focus:ring-gold-500 transition-all focus:w-64"
+            >
+            <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2 pointer-events-none"></i>
+            <button id="header-search-clear" class="hidden absolute right-3 top-2 text-gray-400 hover:text-gray-600 text-xs">✕</button>
+          </div>
+
+          <!-- CURRENCY SELECTOR -->
+          <div class="relative">
+            <select id="currency-select" class="text-xs font-semibold bg-transparent border-none focus:ring-0 cursor-pointer pr-5 py-1 text-gray-700 dark:text-gray-300">
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="INR">INR (₹)</option>
+            </select>
+          </div>
+
+          <!-- THEME TOGGLE BUTTON -->
+          <button id="btn-theme-toggle" aria-label="Toggle Theme" class="p-2 text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
+            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-gold-400"></i>
+          </button>
+
+          <!-- WISHLIST TRIGGER -->
+          <button id="btn-open-wishlist" aria-label="Open Wishlist" class="relative p-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+            <span id="wishlist-badge" class="hidden absolute top-0.5 right-0.5 bg-rose-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+          </button>
+
+          <!-- CART TRIGGER -->
+          <button id="btn-open-cart" aria-label="Open Shopping Bag" class="relative p-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            <span id="cart-badge" class="hidden absolute top-0.5 right-0.5 bg-black dark:bg-gold-500 text-white dark:text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE SEARCH BAR (Visible only on small screens) -->
+  <div class="sm:hidden px-4 py-2.5 bg-white dark:bg-[#121215] border-b border-gray-200 dark:border-zinc-800">
+    <div class="relative">
+      <input 
+        type="text" 
+        id="mobile-search-input" 
+        placeholder="Search fashion catalog..." 
+        class="w-full pl-9 pr-8 py-2 text-sm rounded-lg border border-gray-300 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-850 focus:outline-none focus:ring-1 focus:ring-gold-500"
+      >
+      <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-3 pointer-events-none"></i>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="relative bg-zinc-950 text-white overflow-hidden min-h-[580px] lg:min-h-[640px] flex items-center">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2000&q=85" 
+        alt="High Fashion Editorial" 
+        class="w-full h-full object-cover object-center opacity-40 brightness-75 scale-105 animate-pulse"
+        style="animation-duration: 10s;"
+      >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="max-w-2xl">
+        <span class="inline-block py-1 px-3 mb-4 text-xs font-semibold uppercase tracking-[0.3em] bg-gold-500/20 text-gold-400 border border-gold-500/40 rounded-full">
+          The Autumn / Winter '26 Collection
+        </span>
+        <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6">
+          Sculpted Silence. <br><span class="italic font-normal text-gold-400">Pure Form.</span>
+        </h1>
+        <p class="text-sm sm:text-base text-gray-300 font-light max-w-lg mb-8 leading-relaxed">
+          Artisanal craftsmanship woven into contemporary silhouettes. Explore Italian wool blazers, Mulberry silk eveningwear, handcrafted Tuscan footwear, and timeless leather goods.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <button onclick="filterByCategory('women')" class="px-8 py-3.5 bg-white text-black font-semibold text-xs tracking-widest uppercase hover:bg-gold-500 hover:text-black transition-all shadow-lg">
+            Shop Women
+          </button>
+          <button onclick="filterByCategory('men')" class="px-8 py-3.5 bg-transparent border border-white text-white font-semibold text-xs tracking-widest uppercase hover:bg-white hover:text-black transition-all">
+            Shop Men
+          </button>
+          <button onclick="filterByCategory('all')" class="px-6 py-3.5 text-gray-300 hover:text-gold-400 text-xs tracking-widest uppercase flex items-center gap-2 transition-colors">
+            All Collections <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LUXURY VALUE PROPOSITIONS STRIP -->
+  <section class="bg-white dark:bg-[#121215] border-y border-gray-200 dark:border-zinc-800 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        
+        <div class="flex flex-col items-center p-2">
+          <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600 dark:text-gold-400 mb-2">
+            <i data-lucide="truck" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-xs font-semibold uppercase tracking-wider">Express Shipping</h4>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Complimentary over $150</p>
+        </div>
+
+        <div class="flex flex-col items-center p-2">
+          <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600 dark:text-gold-400 mb-2">
+            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-xs font-semibold uppercase tracking-wider">30-Day Returns</h4>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Hassle-free worldwide pickup</p>
+        </div>
+
+        <div class="flex flex-col items-center p-2">
+          <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600 dark:text-gold-400 mb-2">
+            <i data-lucide="feather" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-xs font-semibold uppercase tracking-wider">Noble Materials</h4>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Pure cashmere, silk & leather</p>
+        </div>
+
+        <div class="flex flex-col items-center p-2">
+          <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600 dark:text-gold-400 mb-2">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <h4 class="text-xs font-semibold uppercase tracking-wider">Bespoke Concierge</h4>
+          <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">Dedicated style advisory</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY EXPLORER GRID -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+      <div>
+        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-gold-600 dark:text-gold-400">Curated Departments</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-light text-black dark:text-white mt-1">Explore by Category</h2>
+      </div>
+      <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0">Select any department to filter the runway collection below</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      
+      <!-- Women Card -->
+      <div onclick="filterByCategory('women')" class="category-card group relative h-72 sm:h-80 shadow-md">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80" alt="Women" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white">
+          <span class="text-[10px] tracking-widest uppercase opacity-75">Ready-to-Wear</span>
+          <h3 class="font-serif text-xl font-medium">Women's Studio</h3>
+          <span class="text-xs text-gold-400 flex items-center gap-1 mt-1 group-hover:underline">Explore Collection &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Men Card -->
+      <div onclick="filterByCategory('men')" class="category-card group relative h-72 sm:h-80 shadow-md">
+        <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=700&q=80" alt="Men" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white">
+          <span class="text-[10px] tracking-widest uppercase opacity-75">Sartorial Craft</span>
+          <h3 class="font-serif text-xl font-medium">Men's Sartorial</h3>
+          <span class="text-xs text-gold-400 flex items-center gap-1 mt-1 group-hover:underline">Explore Collection &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Kids Card -->
+      <div onclick="filterByCategory('kids')" class="category-card group relative h-72 sm:h-80 shadow-md">
+        <img src="https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?auto=format&fit=crop&w=700&q=80" alt="Kids" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white">
+          <span class="text-[10px] tracking-widest uppercase opacity-75">Junior & Youth</span>
+          <h3 class="font-serif text-xl font-medium">Kids & Teens</h3>
+          <span class="text-xs text-gold-400 flex items-center gap-1 mt-1 group-hover:underline">Explore Collection &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Footwear Card -->
+      <div onclick="filterByCategory('footwear')" class="category-card group relative h-72 sm:h-80 shadow-md">
+        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=700&q=80" alt="Shoes" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white">
+          <span class="text-[10px] tracking-widest uppercase opacity-75">Handcrafted</span>
+          <h3 class="font-serif text-xl font-medium">Footwear Atelier</h3>
+          <span class="text-xs text-gold-400 flex items-center gap-1 mt-1 group-hover:underline">Explore Collection &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Accessories Card -->
+      <div onclick="filterByCategory('accessories')" class="category-card group relative h-72 sm:h-80 shadow-md col-span-2 sm:col-span-1">
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80" alt="Bags" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4 text-white">
+          <span class="text-[10px] tracking-widest uppercase opacity-75">Leather & Accents</span>
+          <h3 class="font-serif text-xl font-medium">Accessories</h3>
+          <span class="text-xs text-gold-400 flex items-center gap-1 mt-1 group-hover:underline">Explore Collection &rarr;</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FLASH SALE / RUNWAY COUNTDOWN BANNER -->
+  <section id="sale-section" class="bg-gradient-to-r from-zinc-900 via-stone-900 to-zinc-900 text-white py-10 border-y border-gold-500/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <div class="flex items-center gap-2 text-gold-400 text-xs font-semibold tracking-widest uppercase mb-1">
+          <i data-lucide="zap" class="w-4 h-4 text-gold-400 animate-bounce"></i> Limited VIP Flash Event
+        </div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-light">Exclusive Runway Privileges</h3>
+        <p class="text-xs sm:text-sm text-gray-300 mt-1">Apply code <code class="bg-white/10 px-2 py-0.5 rounded text-gold-400 font-mono font-bold">VOGUE30</code> at checkout for 30% off selected outerwear & leather.</p>
+      </div>
+
+      <!-- Countdown Timer Box -->
+      <div class="flex items-center gap-3 font-mono text-center">
+        <div class="bg-black/60 border border-white/10 px-3 py-2 rounded-lg">
+          <span id="countdown-hours" class="text-xl sm:text-2xl font-bold text-gold-400">14</span>
+          <span class="block text-[9px] uppercase tracking-wider text-gray-400">Hours</span>
+        </div>
+        <span class="text-xl font-bold text-gray-500">:</span>
+        <div class="bg-black/60 border border-white/10 px-3 py-2 rounded-lg">
+          <span id="countdown-minutes" class="text-xl sm:text-2xl font-bold text-gold-400">42</span>
+          <span class="block text-[9px] uppercase tracking-wider text-gray-400">Mins</span>
+        </div>
+        <span class="text-xl font-bold text-gray-500">:</span>
+        <div class="bg-black/60 border border-white/10 px-3 py-2 rounded-lg">
+          <span id="countdown-seconds" class="text-xl sm:text-2xl font-bold text-gold-400">18</span>
+          <span class="block text-[9px] uppercase tracking-wider text-gray-400">Secs</span>
+        </div>
+      </div>
+
+      <button onclick="applyFlashPromo()" class="px-6 py-3 bg-gold-500 hover:bg-gold-400 text-black font-semibold text-xs uppercase tracking-widest transition-all rounded shadow-md">
+        Claim 30% Privilege
+      </button>
+    </div>
+  </section>
+
+  <!-- MAIN CATALOG & FILTERING SECTION -->
+  <main id="catalog-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full">
+    
+    <!-- CATALOG HEADER & CONTROLS -->
+    <div class="border-b border-gray-200 dark:border-zinc-800 pb-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gold-600 dark:text-gold-400 mb-1">
+          <span id="catalog-breadcrumb">Ready-to-Wear Catalog</span>
+        </div>
+        <h2 id="catalog-title" class="font-serif text-3xl sm:text-4xl font-light text-black dark:text-white">All Garments & Accessories</h2>
+      </div>
+
+      <!-- Controls: Results count, Layout toggle, Sort -->
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+        <span id="catalog-count" class="text-xs text-gray-500 dark:text-gray-400">Showing 24 garments</span>
+
+        <!-- Mobile Filter Toggle Button -->
+        <button id="btn-toggle-mobile-filters" class="lg:hidden px-3.5 py-1.5 border border-gray-300 dark:border-zinc-700 text-xs font-semibold rounded-lg flex items-center gap-1.5">
+          <i data-lucide="sliders-horizontal" class="w-4 h-4"></i> Filters
+        </button>
+
+        <!-- Layout Grid Switcher -->
+        <div class="hidden sm:flex items-center border border-gray-200 dark:border-zinc-700 rounded-lg overflow-hidden">
+          <button id="btn-grid-3" aria-label="3 Column Grid" class="p-1.5 bg-gray-100 dark:bg-zinc-800 text-black dark:text-white transition-colors">
+            <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+          </button>
+          <button id="btn-grid-4" aria-label="4 Column Grid" class="p-1.5 text-gray-400 hover:text-black dark:hover:text-white transition-colors">
+            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Sort Dropdown -->
+        <div class="relative">
+          <select id="sort-select" class="text-xs font-semibold bg-white dark:bg-zinc-850 border border-gray-300 dark:border-zinc-700 rounded-lg px-3 py-2 focus:ring-1 focus:ring-gold-500 focus:outline-none cursor-pointer">
+            <option value="featured">Sort by: Featured Runway</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Highest Customer Rating</option>
+            <option value="newest">Newest Arrivals</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVE FILTER TAGS ROW -->
+    <div id="active-filter-tags" class="flex flex-wrap items-center gap-2 mb-6 hidden">
+      <span class="text-xs text-gray-500 font-medium">Active Filters:</span>
+      <div id="filter-chips-container" class="flex flex-wrap gap-2"></div>
+      <button id="btn-clear-all-filters" class="text-xs text-rose-600 hover:underline font-semibold ml-2">Clear All</button>
+    </div>
+
+    <!-- SIDEBAR + PRODUCT GRID LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- FILTERS SIDEBAR (Desktop & Drawer on Mobile) -->
+      <aside id="filters-sidebar" class="hidden lg:block lg:col-span-1 space-y-8 pr-4">
+        
+        <!-- Category Selector -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white mb-3">Categories</h3>
+          <div class="space-y-1.5" id="category-filter-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Subcategory Filter -->
+        <div class="border-t border-gray-200 dark:border-zinc-800 pt-6">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white mb-3">Subcategory</h3>
+          <div class="space-y-2 max-h-48 overflow-y-auto pr-1" id="subcategory-filter-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="border-t border-gray-200 dark:border-zinc-800 pt-6">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">Price Range</h3>
+            <span id="price-range-label" class="text-xs font-mono font-semibold text-gold-600 dark:text-gold-400">$0 - $600</span>
+          </div>
+          <input 
+            type="range" 
+            id="price-range-slider" 
+            min="0" 
+            max="600" 
+            step="10" 
+            value="600" 
+            class="w-full accent-gold-500 cursor-pointer"
+          >
+          <div class="flex justify-between text-[11px] text-gray-400 mt-1">
+            <span>$0</span>
+            <span>$300</span>
+            <span>$600+</span>
+          </div>
+        </div>
+
+        <!-- Size Filter -->
+        <div class="border-t border-gray-200 dark:border-zinc-800 pt-6">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white mb-3">Size</h3>
+          <div class="flex flex-wrap gap-2" id="size-filter-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- In-Stock Only Switch -->
+        <div class="border-t border-gray-200 dark:border-zinc-800 pt-6 flex items-center justify-between">
+          <span class="text-xs font-semibold text-gray-900 dark:text-white">In Stock Only</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="stock-toggle" class="sr-only peer">
+            <div class="w-9 h-5 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-gold-500"></div>
+          </label>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="pt-4">
+          <button id="btn-reset-filters-sidebar" class="w-full py-2.5 border border-gray-300 dark:border-zinc-700 text-xs font-semibold uppercase tracking-wider hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors rounded">
+            Reset Filters
+          </button>
+        </div>
+
+      </aside>
+
+      <!-- PRODUCT GRID CONTAINER -->
+      <section class="lg:col-span-3">
+        
+        <!-- Products Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 transition-all">
+          <!-- Populated dynamically via app.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-20 px-4">
+          <div class="w-16 h-16 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center mx-auto mb-4 text-gray-400">
+            <i data-lucide="package-search" class="w-8 h-8"></i>
+          </div>
+          <h3 class="font-serif text-2xl font-light text-black dark:text-white mb-2">No Garments Found</h3>
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto mb-6">
+            We couldn't find any clothing or accessories matching your current filters. Try adjusting your search query or price limit.
+          </p>
+          <button onclick="store.resetFilters()" class="px-6 py-2.5 bg-black dark:bg-white text-white dark:text-black text-xs font-semibold uppercase tracking-wider rounded">
+            Reset All Filters
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- CRAFTSMANSHIP & EDITORIAL STORY SECTION -->
+  <section class="bg-zinc-100 dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <span class="text-xs font-semibold tracking-[0.3em] uppercase text-gold-600 dark:text-gold-400">Atelier Heritage</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-light leading-tight">The Art of Slow, Uncompromising Luxury</h2>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+            Every garment from Atelier is conceived with enduring architectural beauty in mind. We bypass fleeting micro-trends in favor of rare, heirloom-grade materials: grade-6A Mulberry silk from Hangzhou, unwashed raw selvedge denim from Okayama, Super 130s virgin wool from the Biella mills of Italy, and buttery calfskin leather from Tuscany.
+          </p>
+          <div class="grid grid-cols-3 gap-4 pt-4 border-t border-gray-300 dark:border-zinc-700">
+            <div>
+              <span class="font-serif text-3xl font-light text-gold-500">100%</span>
+              <p class="text-[11px] text-gray-500 uppercase tracking-wider mt-1">Traceable Origins</p>
+            </div>
+            <div>
+              <span class="font-serif text-3xl font-light text-gold-500">22+</span>
+              <p class="text-[11px] text-gray-500 uppercase tracking-wider mt-1">Master Tailors</p>
+            </div>
+            <div>
+              <span class="font-serif text-3xl font-light text-gold-500">0%</span>
+              <p class="text-[11px] text-gray-500 uppercase tracking-wider mt-1">Plastic Packaging</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <img 
+            src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=80" 
+            alt="Tailoring Atelier Studio" 
+            class="rounded-xl shadow-2xl w-full object-cover aspect-[4/3]"
+          >
+          <div class="absolute -bottom-6 -left-6 bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-xl hidden sm:block border border-gray-200 dark:border-zinc-700 max-w-xs">
+            <span class="text-[10px] uppercase font-bold tracking-widest text-gold-500">Hand-finished In Europe</span>
+            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Single-needle stitching with 22 stitches per inch on every formal shirt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / ATELIER VIP CLUB SIGNUP -->
+  <section class="bg-black text-white py-16 border-t border-zinc-800">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="text-xs font-semibold uppercase tracking-[0.3em] text-gold-400">Join the Circle</span>
+      <h3 class="font-serif text-3xl sm:text-4xl font-light mt-2 mb-4">Privileged Runway Access</h3>
+      <p class="text-xs sm:text-sm text-gray-400 max-w-md mx-auto mb-8 font-light">
+        Subscribe to receive private preview invitations, seasonal editorial lookbooks, and an instant $25 voucher on your first order.
+      </p>
+      <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); handleNewsletter();">
+        <input 
+          type="email" 
+          id="newsletter-email" 
+          required 
+          placeholder="Enter your email address" 
+          class="flex-grow px-4 py-3 text-xs bg-zinc-900 border border-zinc-700 rounded text-white focus:outline-none focus:ring-1 focus:ring-gold-500"
+        >
+        <button type="submit" class="px-6 py-3 bg-gold-500 hover:bg-gold-400 text-black font-semibold text-xs tracking-widest uppercase transition-all rounded">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0C0C0E] text-gray-400 text-xs py-14 border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        
+        <div class="col-span-2">
+          <span class="font-serif text-2xl tracking-[0.25em] text-white block mb-3 font-light">ATELIER</span>
+          <p class="text-gray-400 text-xs max-w-sm leading-relaxed mb-4">
+            An independent fashion house delivering modern silhouettes, timeless tailoring, and uncompromising textile purity for Women, Men, and Youth.
+          </p>
+          <div class="flex space-x-4 text-gray-400">
+            <a href="#" class="hover:text-gold-400"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="#" class="hover:text-gold-400"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="#" class="hover:text-gold-400"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Departments</h4>
+          <ul class="space-y-2">
+            <li><button onclick="filterByCategory('women')" class="hover:text-white">Women's Ready-to-Wear</button></li>
+            <li><button onclick="filterByCategory('men')" class="hover:text-white">Men's Tailoring</button></li>
+            <li><button onclick="filterByCategory('kids')" class="hover:text-white">Kids & Youth</button></li>
+            <li><button onclick="filterByCategory('footwear')" class="hover:text-white">Footwear & Boots</button></li>
+            <li><button onclick="filterByCategory('accessories')" class="hover:text-white">Leather Bags & Belts</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">Client Services</h4>
+          <ul class="space-y-2">
+            <li><button onclick="openSizeGuideModal()" class="hover:text-white">International Size Guide</button></li>
+            <li><button onclick="openOrderTrackerModal()" class="hover:text-white">Track Your Shipment</button></li>
+            <li><a href="#" class="hover:text-white">Complimentary Returns</a></li>
+            <li><a href="#" class="hover:text-white">Care & Longevity Guide</a></li>
+            <li><a href="#" class="hover:text-white">Styling Concierge</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold uppercase tracking-wider text-[11px] mb-3">The House</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">Atelier Philosophy</a></li>
+            <li><a href="#" class="hover:text-white">Sustainable Sourcing</a></li>
+            <li><a href="admin.html" class="text-gold-400 hover:text-gold-300 font-semibold flex items-center gap-1">
+              <i data-lucide="settings" class="w-3.5 h-3.5"></i> Store Manager
+            </a></li>
+            <li><a href="#" class="hover:text-white">Press & Editorial</a></li>
+            <li><a href="#" class="hover:text-white">Flagship Boutiques</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-zinc-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+        <p>© 2026 ATELIER FASHION HOUSE SAS. All Rights Reserved.</p>
+        <div class="flex items-center space-x-6">
+          <a href="#" class="hover:text-white">Privacy Policy</a>
+          <a href="#" class="hover:text-white">Terms of Sale</a>
+          <a href="#" class="hover:text-white">Accessibility</a>
+          <a href="#" class="hover:text-white">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS & DRAWERS ==================== -->
+
+  <!-- 1. SLIDE-OUT SHOPPING BAG DRAWER -->
+  <div id="cart-drawer-backdrop" class="drawer-backdrop"></div>
+  <aside id="cart-drawer" class="drawer-panel" aria-label="Shopping Bag">
+    <div class="p-5 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-500"></i>
+        <h3 class="font-serif text-xl font-medium text-black dark:text-white">Shopping Bag</h3>
+        <span id="cart-drawer-count" class="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-300 font-semibold">0 items</span>
+      </div>
+      <button id="btn-close-cart" aria-label="Close Shopping Bag" class="p-1.5 text-gray-500 hover:text-black dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Meter -->
+    <div class="px-5 py-3 bg-gold-500/10 dark:bg-gold-500/15 border-b border-gold-500/20 text-xs">
+      <div class="flex items-center justify-between mb-1.5 font-medium">
+        <span id="free-shipping-text" class="text-gold-800 dark:text-gold-300">Add $150 more for Complimentary Express Delivery</span>
+        <span id="free-shipping-percent" class="font-bold text-gold-700 dark:text-gold-400">0%</span>
+      </div>
+      <div class="w-full h-1.5 bg-gray-200 dark:bg-zinc-700 rounded-full overflow-hidden">
+        <div id="free-shipping-bar" class="h-full bg-gold-500 transition-all duration-500" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Item List -->
+    <div id="cart-items-container" class="flex-grow overflow-y-auto p-5 space-y-4">
+      <!-- Populated via JS -->
+    </div>
+
+    <!-- Cart Empty State -->
+    <div id="cart-empty-state" class="hidden flex-grow flex flex-col items-center justify-center p-8 text-center">
+      <div class="w-16 h-16 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center text-gray-400 mb-4">
+        <i data-lucide="shopping-bag" class="w-8 h-8"></i>
+      </div>
+      <h4 class="font-serif text-xl font-light text-black dark:text-white mb-2">Your Bag is Empty</h4>
+      <p class="text-xs text-gray-500 dark:text-gray-400 max-w-xs mb-6">
+        Discover our new arrivals across Women's, Men's, and Footwear collections.
+      </p>
+      <button onclick="closeCart(); filterByCategory('all');" class="px-6 py-2.5 bg-black dark:bg-white text-white dark:text-black text-xs font-semibold uppercase tracking-wider rounded">
+        Start Shopping
+      </button>
+    </div>
+
+    <!-- Cart Footer / Summary -->
+    <div id="cart-footer" class="p-5 border-t border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900/60 space-y-4">
+      
+      <!-- Promo Code Input -->
+      <div class="flex gap-2">
+        <input 
+          type="text" 
+          id="cart-promo-input" 
+          placeholder="Promo code (e.g. STYLE20)" 
+          class="flex-grow px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850 uppercase font-mono focus:outline-none focus:ring-1 focus:ring-gold-500"
+        >
+        <button id="btn-apply-promo" class="px-4 py-2 bg-black dark:bg-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-700 text-white text-xs font-semibold uppercase tracking-wider rounded">
+          Apply
+        </button>
+      </div>
+      
+      <!-- Applied promo tag indicator -->
+      <div id="applied-promo-tag" class="hidden flex items-center justify-between bg-gold-500/10 border border-gold-500/30 px-3 py-1.5 rounded text-xs">
+        <span class="text-gold-700 dark:text-gold-400 font-medium flex items-center gap-1">
+          <i data-lucide="tag" class="w-3.5 h-3.5"></i> <strong id="applied-promo-code-name">STYLE20</strong> applied
+        </span>
+        <button onclick="store.removePromoCode()" class="text-gray-400 hover:text-rose-500 text-xs">✕</button>
+      </div>
+
+      <!-- Cost Breakdown -->
+      <div class="space-y-1.5 text-xs text-gray-600 dark:text-gray-400">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span id="cart-subtotal" class="font-semibold text-black dark:text-white">$0.00</span>
+        </div>
+        <div id="cart-discount-row" class="hidden flex justify-between text-emerald-600 dark:text-emerald-400">
+          <span>Privilege Discount</span>
+          <span id="cart-discount">-$0.00</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Estimated Shipping</span>
+          <span id="cart-shipping">Free</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Estimated Tax (7%)</span>
+          <span id="cart-tax">$0.00</span>
+        </div>
+        <div class="flex justify-between text-sm font-bold text-black dark:text-white pt-2 border-t border-gray-200 dark:border-zinc-800">
+          <span>Estimated Total</span>
+          <span id="cart-total" class="text-base text-gold-600 dark:text-gold-400">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Checkout CTA -->
+      <button id="btn-checkout-from-cart" class="w-full py-3.5 bg-black dark:bg-gold-500 hover:bg-zinc-800 dark:hover:bg-gold-400 text-white dark:text-black font-semibold text-xs uppercase tracking-widest transition-all rounded shadow-md flex items-center justify-center gap-2">
+        <i data-lucide="lock" class="w-4 h-4"></i> Proceed to Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. SLIDE-OUT WISHLIST DRAWER -->
+  <div id="wishlist-drawer-backdrop" class="drawer-backdrop"></div>
+  <aside id="wishlist-drawer" class="drawer-panel" aria-label="Saved Items">
+    <div class="p-5 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="heart" class="w-5 h-5 text-rose-500"></i>
+        <h3 class="font-serif text-xl font-medium text-black dark:text-white">Saved Wishlist</h3>
+        <span id="wishlist-drawer-count" class="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-300 font-semibold">0 items</span>
+      </div>
+      <button id="btn-close-wishlist" aria-label="Close Wishlist" class="p-1.5 text-gray-500 hover:text-black dark:hover:text-white rounded-full hover:bg-gray-100 dark:hover:bg-zinc-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Wishlist Items -->
+    <div id="wishlist-items-container" class="flex-grow overflow-y-auto p-5 space-y-4">
+      <!-- Populated via JS -->
+    </div>
+
+    <!-- Empty Wishlist -->
+    <div id="wishlist-empty-state" class="hidden flex-grow flex flex-col items-center justify-center p-8 text-center">
+      <div class="w-16 h-16 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center text-gray-400 mb-4">
+        <i data-lucide="heart" class="w-8 h-8"></i>
+      </div>
+      <h4 class="font-serif text-xl font-light text-black dark:text-white mb-2">No Saved Pieces</h4>
+      <p class="text-xs text-gray-500 dark:text-gray-400 max-w-xs mb-6">
+        Tap the heart icon on any garment to keep track of your favorite designs.
+      </p>
+      <button onclick="closeWishlist(); filterByCategory('all');" class="px-6 py-2.5 bg-black dark:bg-white text-white dark:text-black text-xs font-semibold uppercase tracking-wider rounded">
+        Explore Garments
+      </button>
+    </div>
+  </aside>
+
+  <!-- 3. QUICK VIEW PRODUCT MODAL (<dialog>) -->
+  <dialog id="quick-view-dialog" class="rounded-2xl shadow-2xl p-0 overflow-hidden w-full max-w-4xl bg-white dark:bg-[#161619] border border-gray-200 dark:border-zinc-800">
+    <div class="relative flex flex-col md:flex-row max-h-[85vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button id="btn-close-quick-view" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/80 dark:bg-black/60 text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white backdrop-blur">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Left: Image Gallery & Thumbnails -->
+      <div class="md:w-1/2 p-6 flex flex-col gap-4 bg-gray-50 dark:bg-zinc-900/50">
+        <div class="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+          <img id="qv-main-image" src="" alt="" class="w-full h-full object-cover">
+          <span id="qv-badge" class="absolute top-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 bg-black text-white dark:bg-gold-500 dark:text-black rounded">
+            Bestseller
+          </span>
+        </div>
+        <div id="qv-thumbnails" class="flex gap-2 overflow-x-auto pb-1">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- Right: Details & Variant Selection -->
+      <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between">
+        <div>
+          <span id="qv-category" class="text-xs uppercase font-semibold tracking-widest text-gold-600 dark:text-gold-400">WOMEN</span>
+          <h3 id="qv-title" class="font-serif text-2xl sm:text-3xl font-light text-black dark:text-white mt-1 mb-2">Product Title</h3>
+          
+          <!-- Rating -->
+          <div class="flex items-center gap-2 mb-4">
+            <div id="qv-stars" class="flex text-gold-500 text-xs">★★★★★</div>
+            <span id="qv-rating-text" class="text-xs text-gray-500 font-semibold">4.9 (142 reviews)</span>
+          </div>
+
+          <!-- Price -->
+          <div class="flex items-baseline gap-3 mb-6">
+            <span id="qv-price" class="text-2xl font-semibold text-black dark:text-white">$245.00</span>
+            <span id="qv-original-price" class="text-sm text-gray-400 line-through">$320.00</span>
+            <span id="qv-save-pill" class="text-[10px] font-bold text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded">SAVE $75</span>
+          </div>
+
+          <!-- Description -->
+          <p id="qv-description" class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-light mb-6">
+            Detailed product description goes here.
+          </p>
+
+          <!-- Color Swatches -->
+          <div class="mb-5">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">Color: <strong id="qv-color-name" class="font-semibold text-black dark:text-white">Gold</strong></span>
+            </div>
+            <div id="qv-color-swatches" class="flex gap-2.5">
+              <!-- Swatches populated via JS -->
+            </div>
+          </div>
+
+          <!-- Size Selector & Size Guide Link -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">Select Size</span>
+              <button onclick="openSizeGuideModal()" class="text-xs text-gold-600 dark:text-gold-400 hover:underline flex items-center gap-1 font-medium">
+                <i data-lucide="ruler" class="w-3.5 h-3.5"></i> Size Guide
+              </button>
+            </div>
+            <div id="qv-sizes" class="flex flex-wrap gap-2">
+              <!-- Sizes populated via JS -->
+            </div>
+            <p id="qv-stock-alert" class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-2 font-medium">
+              ✓ In Stock (18 units left)
+            </p>
+          </div>
+
+          <!-- Quantity -->
+          <div class="flex items-center gap-4 mb-6">
+            <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">Quantity</span>
+            <div class="flex items-center border border-gray-300 dark:border-zinc-700 rounded-lg overflow-hidden">
+              <button id="qv-qty-minus" class="px-3 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800">-</button>
+              <span id="qv-qty-val" class="px-4 py-1.5 text-xs font-semibold">1</span>
+              <button id="qv-qty-plus" class="px-3 py-1.5 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-800">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="space-y-2 pt-4 border-t border-gray-200 dark:border-zinc-800">
+          <button id="qv-btn-add-cart" class="w-full py-3.5 bg-black dark:bg-gold-500 hover:bg-zinc-800 dark:hover:bg-gold-400 text-white dark:text-black font-semibold text-xs uppercase tracking-widest transition-all rounded shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to Shopping Bag
+          </button>
+          <button id="qv-btn-add-wishlist" class="w-full py-2.5 border border-gray-300 dark:border-zinc-700 text-xs font-semibold uppercase tracking-wider hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors rounded flex items-center justify-center gap-2">
+            <i data-lucide="heart" class="w-4 h-4"></i> Save to Wishlist
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 4. SIZE GUIDE MODAL (<dialog>) -->
+  <dialog id="size-guide-dialog" class="rounded-2xl shadow-2xl p-0 overflow-hidden w-full max-w-2xl bg-white dark:bg-[#161619] border border-gray-200 dark:border-zinc-800">
+    <div class="p-6">
+      <div class="flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 pb-4 mb-4">
+        <div>
+          <h3 class="font-serif text-2xl font-light text-black dark:text-white">International Size Guide</h3>
+          <p class="text-xs text-gray-500">Standard body measurements in inches & centimeters</p>
+        </div>
+        <button onclick="document.getElementById('size-guide-dialog').close()" class="p-1.5 text-gray-400 hover:text-black dark:hover:text-white rounded-full">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="overflow-x-auto text-xs">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-gray-300 dark:border-zinc-700 text-gray-500">
+              <th class="py-2.5 px-3">Size</th>
+              <th class="py-2.5 px-3">US / CA</th>
+              <th class="py-2.5 px-3">UK / AU</th>
+              <th class="py-2.5 px-3">EU</th>
+              <th class="py-2.5 px-3">Bust (in)</th>
+              <th class="py-2.5 px-3">Waist (in)</th>
+              <th class="py-2.5 px-3">Hips (in)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 dark:divide-zinc-800 font-mono">
+            <tr><td class="py-2 px-3 font-sans font-bold">XS</td><td class="py-2 px-3">0 - 2</td><td class="py-2 px-3">4 - 6</td><td class="py-2 px-3">32 - 34</td><td class="py-2 px-3">31 - 32</td><td class="py-2 px-3">24 - 25</td><td class="py-2 px-3">34 - 35</td></tr>
+            <tr><td class="py-2 px-3 font-sans font-bold">S</td><td class="py-2 px-3">4 - 6</td><td class="py-2 px-3">8 - 10</td><td class="py-2 px-3">36 - 38</td><td class="py-2 px-3">33 - 34</td><td class="py-2 px-3">26 - 27</td><td class="py-2 px-3">36 - 37</td></tr>
+            <tr><td class="py-2 px-3 font-sans font-bold">M</td><td class="py-2 px-3">8 - 10</td><td class="py-2 px-3">12 - 14</td><td class="py-2 px-3">40 - 42</td><td class="py-2 px-3">35 - 37</td><td class="py-2 px-3">28 - 30</td><td class="py-2 px-3">38 - 40</td></tr>
+            <tr><td class="py-2 px-3 font-sans font-bold">L</td><td class="py-2 px-3">12 - 14</td><td class="py-2 px-3">16 - 18</td><td class="py-2 px-3">44 - 46</td><td class="py-2 px-3">38 - 40</td><td class="py-2 px-3">31 - 33</td><td class="py-2 px-3">41 - 43</td></tr>
+            <tr><td class="py-2 px-3 font-sans font-bold">XL</td><td class="py-2 px-3">16</td><td class="py-2 px-3">20</td><td class="py-2 px-3">48</td><td class="py-2 px-3">41 - 43</td><td class="py-2 px-3">34 - 36</td><td class="py-2 px-3">44 - 46</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 p-4 rounded-lg bg-gray-50 dark:bg-zinc-800/60 border border-gray-200 dark:border-zinc-700 text-xs text-gray-500 space-y-1">
+        <p><strong>Measuring Tip:</strong> For dresses and tops, prioritize bust and waist measurements. For tailored trousers and jeans, measure your natural waistline and high hip contour.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 5. MULTI-STEP CHECKOUT MODAL (<dialog>) -->
+  <dialog id="checkout-dialog" class="rounded-2xl shadow-2xl p-0 overflow-hidden w-full max-w-3xl bg-white dark:bg-[#161619] border border-gray-200 dark:border-zinc-800">
+    <div class="p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+      
+      <!-- Checkout Header -->
+      <div class="flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 pb-4 mb-6">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-[0.25em] text-gold-500">256-Bit SSL Encrypted</span>
+          <h3 class="font-serif text-2xl sm:text-3xl font-light text-black dark:text-white">Secure Checkout</h3>
+        </div>
+        <button onclick="document.getElementById('checkout-dialog').close()" class="p-1.5 text-gray-400 hover:text-black dark:hover:text-white rounded-full">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Step Indicator -->
+      <div class="flex items-center justify-between mb-8 max-w-md mx-auto">
+        <div class="flex items-center gap-2">
+          <div id="step-dot-1" class="w-7 h-7 rounded-full bg-gold-500 text-black text-xs font-bold flex items-center justify-center">1</div>
+          <span class="text-xs font-semibold">Shipping</span>
+        </div>
+        <div class="flex-grow h-0.5 bg-gray-200 dark:bg-zinc-800 mx-3"></div>
+        <div class="flex items-center gap-2">
+          <div id="step-dot-2" class="w-7 h-7 rounded-full bg-gray-200 dark:bg-zinc-800 text-gray-500 text-xs font-bold flex items-center justify-center">2</div>
+          <span class="text-xs font-semibold text-gray-400">Delivery</span>
+        </div>
+        <div class="flex-grow h-0.5 bg-gray-200 dark:bg-zinc-800 mx-3"></div>
+        <div class="flex items-center gap-2">
+          <div id="step-dot-3" class="w-7 h-7 rounded-full bg-gray-200 dark:bg-zinc-800 text-gray-500 text-xs font-bold flex items-center justify-center">3</div>
+          <span class="text-xs font-semibold text-gray-400">Payment</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Shipping Address -->
+      <div id="checkout-step-1" class="space-y-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">Contact & Shipping Address</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">First Name *</label>
+            <input type="text" id="chk-first-name" required value="Elena" class="w-full px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Last Name *</label>
+            <input type="text" id="chk-last-name" required value="Rostova" class="w-full px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Email for Confirmation & Tracking *</label>
+            <input type="email" id="chk-email" required value="elena.rostova@fashionhouse.com" class="w-full px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Street Address *</label>
+            <input type="text" id="chk-address" required value="740 Park Avenue, Apt 11B" class="w-full px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">City *</label>
+            <input type="text" id="chk-city" required value="New York" class="w-full px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Postal Code *</label>
+            <input type="text" id="chk-zip" required value="10021" class="w-full px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+        </div>
+
+        <button onclick="goToCheckoutStep(2)" class="w-full mt-4 py-3 bg-black dark:bg-gold-500 text-white dark:text-black font-semibold text-xs uppercase tracking-widest rounded shadow">
+          Continue to Delivery Method &rarr;
+        </button>
+      </div>
+
+      <!-- Step 2: Delivery Method -->
+      <div id="checkout-step-2" class="space-y-4 hidden">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">Choose Delivery Preference</h4>
+        
+        <div class="space-y-3">
+          <label class="flex items-center justify-between p-4 rounded-xl border border-gold-500/50 bg-gold-500/5 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="delivery-method" value="standard" checked class="accent-gold-500">
+              <div>
+                <span class="text-xs font-bold block">Complimentary White Glove Courier</span>
+                <span class="text-[11px] text-gray-500">Estimated Delivery: 3-5 business days</span>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-emerald-600">FREE</span>
+          </label>
+
+          <label class="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-zinc-800 hover:border-gray-300 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="delivery-method" value="express" class="accent-gold-500">
+              <div>
+                <span class="text-xs font-bold block">Express Air Courier</span>
+                <span class="text-[11px] text-gray-500">Estimated Delivery: 1-2 business days</span>
+              </div>
+            </div>
+            <span class="text-xs font-bold">$15.00</span>
+          </label>
+
+          <label class="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-zinc-800 hover:border-gray-300 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="delivery-method" value="overnight" class="accent-gold-500">
+              <div>
+                <span class="text-xs font-bold block">Overnight Priority Delivery</span>
+                <span class="text-[11px] text-gray-500">Delivered tomorrow before 12:00 PM</span>
+              </div>
+            </div>
+            <span class="text-xs font-bold">$25.00</span>
+          </label>
+        </div>
+
+        <div class="flex gap-3 mt-4">
+          <button onclick="goToCheckoutStep(1)" class="w-1/3 py-3 border border-gray-300 dark:border-zinc-700 text-xs font-semibold uppercase rounded">
+            &larr; Back
+          </button>
+          <button onclick="goToCheckoutStep(3)" class="w-2/3 py-3 bg-black dark:bg-gold-500 text-white dark:text-black font-semibold text-xs uppercase tracking-widest rounded shadow">
+            Proceed to Payment &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Payment & Order Finalization -->
+      <div id="checkout-step-3" class="space-y-6 hidden">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">Payment Method</h4>
+        
+        <!-- Live Card Preview -->
+        <div class="card-preview font-mono text-xs flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <div class="card-chip"></div>
+            <span class="font-serif italic text-sm tracking-widest text-gold-400">ATELIER BLACK</span>
+          </div>
+          <div class="my-4">
+            <div id="card-preview-number" class="text-base sm:text-lg tracking-widest font-semibold">•••• •••• •••• 4242</div>
+          </div>
+          <div class="flex justify-between items-end text-[10px] uppercase tracking-wider">
+            <div>
+              <span class="text-gray-400 block text-[8px]">Cardholder</span>
+              <span id="card-preview-name" class="font-sans font-semibold text-white">ELENA ROSTOVA</span>
+            </div>
+            <div>
+              <span class="text-gray-400 block text-[8px]">Expires</span>
+              <span id="card-preview-expiry">12/28</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Input Fields -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Name on Card *</label>
+            <input type="text" id="chk-card-name" value="Elena Rostova" oninput="updateCardPreview()" class="w-full px-3 py-2 text-xs rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Card Number *</label>
+            <input type="text" id="chk-card-number" maxlength="19" value="4242 •••• •••• 4242" oninput="updateCardPreview()" class="w-full px-3 py-2 text-xs font-mono rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Expiration (MM/YY) *</label>
+            <input type="text" id="chk-card-exp" maxlength="5" value="12/28" oninput="updateCardPreview()" class="w-full px-3 py-2 text-xs font-mono rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-500 mb-1">Security Code (CVV) *</label>
+            <input type="password" id="chk-card-cvv" maxlength="4" value="888" class="w-full px-3 py-2 text-xs font-mono rounded border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-850">
+          </div>
+        </div>
+
+        <!-- Order Total Banner -->
+        <div class="p-4 rounded-xl bg-gray-50 dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 flex items-center justify-between">
+          <div>
+            <span class="text-xs text-gray-500 block">Total Amount to be Charged</span>
+            <span id="chk-final-total" class="font-serif text-2xl font-semibold text-black dark:text-white">$0.00</span>
+          </div>
+          <div class="text-right text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
+            ✓ Express Delivery Included<br>
+            ✓ 30-Day Bespoke Guarantee
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button onclick="goToCheckoutStep(2)" class="w-1/3 py-3 border border-gray-300 dark:border-zinc-700 text-xs font-semibold uppercase rounded">
+            &larr; Back
+          </button>
+          <button id="btn-complete-order" onclick="processOrderPayment()" class="w-2/3 py-3.5 bg-black dark:bg-gold-500 hover:bg-zinc-800 dark:hover:bg-gold-400 text-white dark:text-black font-semibold text-xs uppercase tracking-widest rounded shadow flex items-center justify-center gap-2">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Place Order Now
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- 6. ORDER TRACKING & RECEIPT MODAL (<dialog>) -->
+  <dialog id="order-tracking-dialog" class="rounded-2xl shadow-2xl p-0 overflow-hidden w-full max-w-2xl bg-white dark:bg-[#161619] border border-gray-200 dark:border-zinc-800">
+    <div class="p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between border-b border-gray-200 dark:border-zinc-800 pb-4 mb-6">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-[0.25em] text-emerald-600 dark:text-emerald-400">Order Confirmed</span>
+          <h3 class="font-serif text-2xl font-light text-black dark:text-white">Shipment Tracking</h3>
+        </div>
+        <button onclick="document.getElementById('order-tracking-dialog').close()" class="p-1.5 text-gray-400 hover:text-black dark:hover:text-white rounded-full">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Order ID & Meta Banner -->
+      <div class="bg-gray-50 dark:bg-zinc-900 p-4 rounded-xl border border-gray-200 dark:border-zinc-800 mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-gray-400 block">Tracking ID</span>
+          <span id="track-order-id" class="font-mono text-sm font-bold text-gold-600 dark:text-gold-400">ATL-94820-US</span>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase font-bold text-gray-400 block">Estimated Arrival</span>
+          <span id="track-order-arrival" class="text-xs font-semibold text-black dark:text-white">3 Days from Today</span>
+        </div>
+        <div>
+          <span class="text-[10px] uppercase font-bold text-gray-400 block">Courier</span>
+          <span class="text-xs font-semibold text-black dark:text-white">Atelier White Glove Air</span>
+        </div>
+      </div>
+
+      <!-- Interactive Timeline -->
+      <div class="my-8 pl-2">
+        <div class="timeline-item completed">
+          <div class="timeline-dot"><i data-lucide="check" class="w-3 h-3 text-white"></i></div>
+          <h4 class="text-xs font-bold text-black dark:text-white">Order Placed & Payment Authorized</h4>
+          <p class="text-[11px] text-gray-500">Transaction completed with secure 256-bit encryption.</p>
+        </div>
+        <div class="timeline-item completed">
+          <div class="timeline-dot"><i data-lucide="check" class="w-3 h-3 text-white"></i></div>
+          <h4 class="text-xs font-bold text-black dark:text-white">Sartorial Quality Check & Packaging</h4>
+          <p class="text-[11px] text-gray-500">Garments inspected by master tailor, packed in silk-lined gift box.</p>
+        </div>
+        <div class="timeline-item active">
+          <div class="timeline-dot"><i data-lucide="truck" class="w-3 h-3 text-gold-500"></i></div>
+          <h4 class="text-xs font-bold text-gold-600 dark:text-gold-400">In Transit with Express Courier</h4>
+          <p class="text-[11px] text-gray-500">Dispatched from Paris Atelier Hub. In flight to regional facility.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4 class="text-xs font-bold text-gray-400">Out for White Glove Delivery</h4>
+          <p class="text-[11px] text-gray-400">Scheduled personal handover with signature verification.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4 class="text-xs font-bold text-gray-400">Delivered</h4>
+          <p class="text-[11px] text-gray-400">30-day complimentary return window begins.</p>
+        </div>
+      </div>
+
+      <!-- Order Receipt Items -->
+      <div class="border-t border-gray-200 dark:border-zinc-800 pt-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider mb-3">Order Items Summary</h4>
+        <div id="track-order-items" class="space-y-2 text-xs">
+          <!-- Items inserted via JS -->
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end gap-3">
+        <button onclick="window.print()" class="px-4 py-2 border border-gray-300 dark:border-zinc-700 text-xs font-semibold rounded flex items-center gap-1.5">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i> Print Receipt
+        </button>
+        <button onclick="document.getElementById('order-tracking-dialog').close()" class="px-6 py-2 bg-black dark:bg-white text-white dark:text-black text-xs font-semibold uppercase rounded">
+          Close Window
+        </button>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- 7. MOBILE NAVIGATION DRAWER -->
+  <div id="mobile-nav-backdrop" class="drawer-backdrop"></div>
+  <aside id="mobile-nav-drawer" class="drawer-panel" aria-label="Mobile Navigation">
+    <div class="p-5 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between">
+      <span class="font-serif text-2xl tracking-[0.2em] font-light">ATELIER</span>
+      <button id="btn-close-mobile-menu" aria-label="Close Mobile Menu" class="p-1.5 text-gray-500 hover:text-black dark:hover:text-white rounded-full">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+    <div class="p-5 space-y-4">
+      <nav class="space-y-3 text-sm font-medium uppercase tracking-wider">
+        <button onclick="closeMobileMenu(); filterByCategory('all');" class="block w-full text-left py-2 border-b border-gray-100 dark:border-zinc-800">All Collections</button>
+        <button onclick="closeMobileMenu(); filterByCategory('women');" class="block w-full text-left py-2 border-b border-gray-100 dark:border-zinc-800">Women's Fashion</button>
+        <button onclick="closeMobileMenu(); filterByCategory('men');" class="block w-full text-left py-2 border-b border-gray-100 dark:border-zinc-800">Men's Sartorial</button>
+        <button onclick="closeMobileMenu(); filterByCategory('kids');" class="block w-full text-left py-2 border-b border-gray-100 dark:border-zinc-800">Kids & Teens</button>
+        <button onclick="closeMobileMenu(); filterByCategory('footwear');" class="block w-full text-left py-2 border-b border-gray-100 dark:border-zinc-800">Footwear & Boots</button>
+        <button onclick="closeMobileMenu(); filterByCategory('accessories');" class="block w-full text-left py-2 border-b border-gray-100 dark:border-zinc-800">Bags & Accessories</button>
+        <a href="admin.html" class="block py-2 text-gold-500 font-semibold flex items-center gap-1.5">
+          <i data-lucide="shield-check" class="w-4 h-4"></i> Store Manager Dashboard
+        </a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- APPLICATION SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
